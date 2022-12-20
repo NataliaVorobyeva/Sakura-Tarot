@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import GetCards from "../services/services";
 import "../styles/main.css";
 
 function Main() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    const result = GetCards();
-    setCards(result);
+    fetch("https://6388b6e5a4bb27a7f78f96a5.mockapi.io/sakura-cards/")
+      .then((resp) => resp.json())
+      .then((data) =>setCards(data));
   }, []);
 
   return (
