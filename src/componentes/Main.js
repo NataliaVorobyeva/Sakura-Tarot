@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/main.css";
+import Card from "./Card";
 
 function Main() {
   const [cards, setCards] = useState([]);
@@ -9,6 +10,13 @@ function Main() {
       .then((resp) => resp.json())
       .then((data) =>setCards(data));
   }, []);
+  const[clowcard, setClowcard] =useState();
+  /*function handleClick(){
+  setCards(cards => !cards);
+  }
+  let cardsReverseCheck = cards ? ' clowCard': null;*/
+   
+  
 
   return (
     <>
@@ -17,12 +25,9 @@ function Main() {
           ? cards.map((card, index) => {
               if (card.cardsReverse.clowReverse) {
                 return (
-                  <div key={index}>
-                    <img
-                      src={card.cardsReverse.clowReverse}
-                      alt={card.spanishName}
-                    />
-                  </div>
+                  <button key={index}>
+                    <Card key={index} id={card.id} frontface={card.clowCard} backface={card.cardsReverse.clowReverse} meaning={card.meaning} />
+                  </button>
                 );
               }
               return <div className="displayNone"></div>;
@@ -34,3 +39,8 @@ function Main() {
 }
 
 export default Main;
+
+
+
+
+  
